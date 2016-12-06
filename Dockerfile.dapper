@@ -1,0 +1,12 @@
+from mitchty/alpine-ghc:latest
+
+ENV DAPPER_SOURCE /src
+ENV DAPPER_OUTPUT bin
+
+WORKDIR ${DAPPER_SOURCE}
+
+RUN apk update && \
+    apk upgrade && \
+    apk add git musl-dev postgresql-dev zlib-dev
+
+ENTRYPOINT ["./build.sh"]
